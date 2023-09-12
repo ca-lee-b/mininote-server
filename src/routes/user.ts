@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import { createUser, getUsers } from "../controllers/user.controller";
 import { withSession } from "../controllers/auth.controller";
-import { logger } from "src/server";
+import { logger } from "../server";
 
 const router = express();
 

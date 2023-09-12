@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import { loginSchema, registerSchema } from "../validations";
 import { login, logout, me, register, withSession } from "../controllers/auth.controller";
 import { rateLimit } from "express-rate-limit";
-import { logger } from "src/server";
+import { logger } from "../server";
 
 const router = express();
 
