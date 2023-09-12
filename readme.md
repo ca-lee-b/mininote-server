@@ -3,6 +3,7 @@
 - Express (w/ Typescript)
 - express-rate-limit for the auth router
 - express-validator for body parsing
+  = Winston for logging
 - bcrypt for hashing
 - Postgresql + Prisma for the database
 

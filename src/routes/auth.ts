@@ -1,9 +1,21 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { loginSchema, registerSchema } from "../validations";
 import { login, logout, me, register, withSession } from "../controllers/auth.controller";
 import { rateLimit } from "express-rate-limit";
+import { logger } from "src/server";
 
 const router = express();
+
+//Logger
+router.use((req: Request, res: Response, next: NextFunction) => {
+    logger.log("info", `[auth] received ${req.method} request for ${req.url}`)
+
+    res.on("finish", () => {
+        logger.log("info", `[auth] finished ${req.method} request for ${req.url}: ${res.statusCode} ${res.statusMessage}`)
+    })
+
+    next();
+})
 
 router.get("/me", withSession, me)
 router.use(rateLimit({
