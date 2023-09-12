@@ -2,7 +2,7 @@ import express, { type Request, type Response, type Application, json } from "ex
 import { UserRouter } from "./routes/user";
 import { AuthRouter } from "./routes/auth";
 import cookieParser from "cookie-parser"
-import cors from "cors";
+import cors, { CorsOptions } from "cors";
 import { NoteRouter } from "./routes/note";
 import winston from "winston";
 
@@ -20,7 +20,10 @@ export const logger = winston.createLogger({
 export function bootstrap(): Application {
     const app = express();
 
-    app.use(cors({ origin: ["http://localhost:3000"], credentials: true, allowedHeaders: ["Content-Type", "Cookie", "Accept", "Origin", "Authorization"], methods: ["PUT", "GET", "POST", "PATCH", "DELETE", "OPTIONS"] }))
+    const corsOptions: CorsOptions = { origin: "http://localhost:3000", credentials: true, allowedHeaders: ["Content-Type", "Cookie", "Accept", "Origin", "Authorization"], methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }
+
+    app.use(cors(corsOptions))
+    app.options("*", cors(corsOptions))
     app.use(json())
     app.use(cookieParser());
 
