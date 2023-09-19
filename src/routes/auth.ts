@@ -8,7 +8,7 @@ const router = express();
 
 //Logger
 router.use((req: Request, res: Response, next: NextFunction) => {
-    logger.log("info", `[auth] received ${req.method} request for ${req.url}`)
+    logger.log("info", `[auth] received ${req.method} request for ${req.url} from ${req.hostname}`)
 
     res.on("finish", () => {
         logger.log("info", `[auth] finished ${req.method} request for ${req.url}: ${res.statusCode} ${res.statusMessage}`)
