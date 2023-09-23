@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { prisma } from "../lib/prisma";
+import { validationResult } from "express-validator";
 
 export async function getNotes(req: Request, res: Response) {
     const token = req.cookies["session"]
@@ -66,6 +67,11 @@ export async function updateNote(req: Request, res: Response) {
 }
 
 export async function createNote(req: Request, res: Response) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const formatted = errors.formatWith((e) => e.msg as string);
+        return res.status(400).send(formatted.array());
+    }
     if (!req.body["title"]) return res.status(400).send("Title Required")
 
     const note = await prisma.note.create({

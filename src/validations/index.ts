@@ -2,6 +2,7 @@ import { body, check } from "express-validator";
 
 export const loginSchema = [
     check("email", "Email must be an email").isEmail(),
+    check("password", "Password must be between 7 and 30 characters").isLength({min: 7, max: 30})
 ]
 
 export const registerSchema = [

@@ -6,6 +6,7 @@
 - Winston for logging
 - bcrypt for hashing
 - Postgresql + Prisma for the database
+- Jest + Supertest for testing
 
 ### Deployment
 
