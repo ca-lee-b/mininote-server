@@ -14,3 +14,4 @@ services:
     command: node build/index.js
     restart: unless-stopped
     env_file: .env
+    image: apillow/mininote-server

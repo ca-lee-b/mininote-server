@@ -18,4 +18,5 @@ COPY --from=build /server/prisma /server/prisma
 COPY --from=build /server/.env* /server/
 
 EXPOSE 8080
+ENV PORT 8000
 CMD ["node", "/server/build/index.js"]
