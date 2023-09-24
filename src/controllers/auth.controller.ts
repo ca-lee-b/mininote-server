@@ -162,7 +162,7 @@ export async function login(req: Request, res: Response) {
     expires: new Date(expiry),
     httpOnly: true,
     secure: true,
-    sameSite: "lax",
+    sameSite: "none",
     domain: process.env.FRONTEND_URL
   });
   res.status(200).send("Success");
