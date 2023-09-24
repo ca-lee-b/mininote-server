@@ -20,4 +20,5 @@ COPY --from=build /server/startup.sh /server/
 
 EXPOSE 8080
 ENV PORT 8080
-CMD ["startup.sh"]
+CMD ["node", "/server/build/index.js"]
+# CMD ["startup.sh"]
