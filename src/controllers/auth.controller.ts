@@ -163,7 +163,7 @@ export async function login(req: Request, res: Response) {
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    domain: process.env.FRONTEND_URL
+    domain: ".railway.app"
   });
   res.status(200).send("Success");
 }
