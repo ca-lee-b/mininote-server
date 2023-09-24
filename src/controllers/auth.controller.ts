@@ -163,6 +163,7 @@ export async function login(req: Request, res: Response) {
     httpOnly: true,
     secure: true,
     sameSite: "strict",
+    domain: ".railway.app"
   });
   res.status(200).send("Success");
 }
