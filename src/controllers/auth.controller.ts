@@ -161,7 +161,7 @@ export async function login(req: Request, res: Response) {
     maxAge: new Date(expiry).getTime(),
     expires: new Date(expiry),
     httpOnly: true,
-    secure: false,
+    secure: true,
     sameSite: "strict",
   });
   res.status(200).send("Success");
