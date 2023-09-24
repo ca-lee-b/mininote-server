@@ -16,6 +16,7 @@ COPY --from=build /server/build /server/build
 COPY --from=build /server/node_modules /server/node_modules
 COPY --from=build /server/prisma /server/prisma
 COPY --from=build /server/.env* /server/
+COPY --from=build /server/startup.sh /server/
 
 EXPOSE 8080
 ENV PORT 8080
