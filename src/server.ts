@@ -6,7 +6,7 @@ import cors, { CorsOptions } from "cors";
 import { NoteRouter } from "./routes/note";
 import winston from "winston";
 
-const corsOptions: CorsOptions = { origin: ["http://127.0.0.1:3000", "http://host.docker.internal"], credentials: true, allowedHeaders: ["Content-Type", "Cookie", "Accept", "Origin", "Authorization"], methods: "OPTIONS,GET,PUT,PATCH,POST,DELETE" }
+const corsOptions: CorsOptions = { origin: process.env.FRONTEND_URL, credentials: true, allowedHeaders: ["Content-Type", "Cookie", "Accept", "Origin", "Authorization"], methods: "OPTIONS,GET,PUT,PATCH,POST,DELETE" }
 
 export const logger = winston.createLogger({
     level: "info",
