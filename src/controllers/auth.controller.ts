@@ -163,7 +163,7 @@ export async function login(req: Request, res: Response) {
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    domain: "mininote.caleblee.dev"
+    domain: ".railway.app"
   });
   res.status(200).send("Success");
 }
