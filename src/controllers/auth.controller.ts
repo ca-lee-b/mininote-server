@@ -162,8 +162,7 @@ export async function login(req: Request, res: Response) {
     expires: new Date(expiry),
     httpOnly: true,
     secure: true,
-    sameSite: "none",
-    domain: ".railway.app"
+    sameSite: "none"
   });
   res.status(200).send("Success");
 }
