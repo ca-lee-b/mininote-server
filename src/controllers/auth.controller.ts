@@ -162,7 +162,8 @@ export async function login(req: Request, res: Response) {
     expires: new Date(expiry),
     httpOnly: true,
     secure: true,
-    sameSite: "none"
+    sameSite: "none",
+    domain: ".caleblee.dev"
   });
   res.status(200).send("Success");
 }
