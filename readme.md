@@ -24,3 +24,5 @@ For production:
 - Run `npx prisma generate` rather than `npx migrate`
 - Run `npm run build`
 - `node build/index.js`
+
+Hosted on railway.
