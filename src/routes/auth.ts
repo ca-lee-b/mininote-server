@@ -33,7 +33,7 @@ router.get("/me", withSession, me);
 router.use(
   rateLimit({
     windowMs: 1 * 60 * 1000,
-    max: 60, //20 requests per minute
+    max: 60, //60 requests per minute
     standardHeaders: "draft-7",
     legacyHeaders: false,
   })

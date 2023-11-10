@@ -17,22 +17,22 @@ export async function withSession(
       id,
     },
     include: {
-      user: true
-    }
+      user: true,
+    },
   });
 
   if (!session) {
     res.clearCookie("session");
     res.status(400).send("Unauthorized");
-    
+
     return;
   }
-  if (new Date() > session.expiry) { 
+  if (new Date() > session.expiry) {
     await prisma.session.delete({
       where: {
-        id
-      }
-    })
+        id,
+      },
+    });
     return res.status(400).send("Unauthorized");
   }
   //@ts-ignore
@@ -132,8 +132,8 @@ export async function login(req: Request, res: Response) {
       },
     });
     if (sessionExists) {
-      let now = new Date()
-      const expiry = now.setDate(now.getDate() + 30)
+      let now = new Date();
+      const expiry = now.setDate(now.getDate() + 30);
       await prisma.session.update({
         where: {
           id: sessionExists.id,
@@ -147,8 +147,8 @@ export async function login(req: Request, res: Response) {
   }
 
   //Create session
-  let now = new Date()
-  const expiry = now.setDate(now.getDate() + 30)
+  let now = new Date();
+  const expiry = now.setDate(now.getDate() + 30);
   const session = await prisma.session.create({
     data: {
       userId: user.id,
@@ -161,9 +161,9 @@ export async function login(req: Request, res: Response) {
     maxAge: new Date(expiry).getTime(),
     expires: new Date(expiry),
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
-    domain: ".railway.app"
+    secure: process.env.ENVIRONMENT === "PROD",
+    sameSite: process.env.ENVIRONMENT === "PROD" ? "none" : "lax",
+    domain: process.env.ENVIRONMENT === "PROD" ? ".railway.app" : "localhost",
   });
   res.status(200).send("Success");
 }
